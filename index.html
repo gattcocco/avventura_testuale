@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Radical Chic Simulator — Avventura testuale</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    #context-menu {
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-gray-100 to-gray-200 text-gray-800 min-h-screen flex justify-center p-6">
+
+  <main class="bg-white shadow-xl rounded-2xl max-w-3xl w-full p-8 relative">
+
+    <header class="text-center mb-6 border-b border-gray-300 pb-4">
+      <h1 class="text-3xl font-semibold text-[#0f306d] mb-1">
+        Radical Chic Simulator
+      </h1>
+      <p class="text-sm text-gray-500 italic">
+        Versione 0.5 — Avventura testuale interattiva
+      </p>
+    </header>
+
+    <figure class="mb-6 flex flex-col items-center">
+      <img 
+        src="757.png" 
+        alt="Illustrazione della scena iniziale — ti svegli nel tuo monolocale a Nolo"
+        class="w-3/4 rounded-lg shadow-md object-cover"
+      >
+      <figcaption class="text-xs text-gray-500 italic text-center mt-2">
+        Ti svegli nel tuo monolocale a Nolo
+      </figcaption>
+    </figure>
+
+    <section id="text" class="leading-relaxed text-[1.05rem] mb-6">
+      <p class="mb-3">
+        Ti svegli nel tuo monolocale a Nolo con i postumi di una sbronza.
+        Ieri ti sei addormentato per terra e, quando ti sei alzato, 
+        non avevi più il telefono.
+      </p>
+
+      <p>
+        Sul tavolo vedi una 
+        <span 
+          class="interactive underline decoration-dotted cursor-pointer text-[#0f306d] hover:text-[#28a9df]"
+          data-object-id="polaroid_tavolo"
+          data-actions="osserva, prendi"
+        >
+          polaroid,
+        </span>
+        l’hai scattata con degli sconosciuti. 
+        Vedi anche un 
+        <span 
+          class="interactive underline decoration-dotted cursor-pointer text-[#0f306d] hover:text-[#28a9df]"
+          data-object-id="portafoglio_sconosciuto"
+          data-actions="osserva, prendi, apri"
+        >
+          portafoglio
+        </span>,
+        ma non è il tuo. 
+        Fuori dalla finestra vedi 
+        <span 
+          class="interactive underline decoration-dotted cursor-pointer text-[#0f306d] hover:text-[#28a9df]"
+          data-object-id="corteo_strada"
+          data-actions="osserva, raggiungi"
+        >
+          un corteo
+        </span>:
+        sono persone straniere — diresti srilankesi — ma non riesci a leggere i cartelli.
+      </p>
+    </section>
+
+    <section id="objects" class="border-t border-gray-300 pt-4 mb-6">
+      <h2 class="font-semibold text-gray-700 mb-2 text-sm uppercase">
+        Qui vedi anche:
+      </h2>
+      <p class="space-x-1 text-sm">
+        <span 
+          class="interactive underline decoration-dotted cursor-pointer text-[#0f306d] hover:text-[#28a9df]"
+          data-object-id="sigarette_pacchetto"
+          data-actions="osserva, prendi"
+        >
+          un pacchetto di sigarette
+        </span>,
+        <span 
+          class="interactive underline decoration-dotted cursor-pointer text-[#0f306d] hover:text-[#28a9df]"
+          data-object-id="vestiti_terra"
+          data-actions="osserva, sposta, prendi"
+        >
+          un cumulo di vestiti
+        </span>,
+        <span 
+          class="interactive underline decoration-dotted cursor-pointer text-[#0f306d] hover:text-[#28a9df]"
+          data-object-id="libro_foucault"
+          data-actions="osserva, prendi, leggi"
+        >
+          <i>Sorvegliare e punire</i> di Foucault
+        </span>.
+      </p>
+    </section>
+
+    <section id="inventory" class="border-t border-gray-300 pt-4 mb-6">
+      <h2 class="font-semibold text-gray-700 mb-2 text-sm uppercase">
+        Stai portando con te:
+      </h2>
+      <p class="space-x-1 text-sm">
+        <span 
+          class="interactive underline decoration-dotted cursor-pointer text-[#0f306d] hover:text-[#28a9df]"
+          data-object-id="sigarette_tue"
+          data-actions="osserva, usa, getta"
+        >
+          le tue sigarette
+        </span>,
+        <span 
+          class="interactive underline decoration-dotted cursor-pointer text-[#0f306d] hover:text-[#28a9df]"
+          data-object-id="accendino"
+          data-actions="osserva, usa, getta"
+        >
+          un accendino
+        </span>,
+        <span 
+          class="interactive underline decoration-dotted cursor-pointer text-[#0f306d] hover:text-[#28a9df]"
+          data-object-id="portafoglio_tuo"
+          data-actions="osserva, apri, getta"
+        >
+          il tuo portafoglio
+        </span>.
+      </p>
+    </section>
+
+    <nav class="border-t border-gray-300 pt-3 flex flex-wrap gap-4 justify-center text-sm mb-6">
+      <a href="#" class="text-[#0f306d] hover:text-[#28a9df] underline">aiuto</a>
+      <a href="#" class="text-[#0f306d] hover:text-[#28a9df] underline">termina</a>
+      <a href="#" class="text-[#0f306d] hover:text-[#28a9df] underline">carica</a>
+      <a href="#" class="text-[#0f306d] hover:text-[#28a9df] underline">salva</a>
+      <a href="#" class="text-[#0f306d] hover:text-[#28a9df] underline">opzioni</a>
+    </nav>
+
+    <footer class="border-t border-gray-300 pt-3 text-center text-sm text-gray-600">
+      Completamento: 
+      <span id="progress" class="font-semibold text-[#0f306d]">29%</span>
+    </footer>
+
+  </main>
+
+  <div 
+    id="context-menu" 
+    class="hidden absolute bg-gray-800 text-white text-sm rounded-md shadow-lg p-2"
+  >
+    </div>
+
+  <script>
+    // Aspetta che l'intera pagina sia caricata
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      const contextMenu = document.getElementById('context-menu');
+      
+      // Seleziona TUTTI gli elementi con la classe 'interactive' che abbiamo aggiunto
+      const interactiveElements = document.querySelectorAll('.interactive');
+
+      // Nascondi il menu se si clicca in un punto qualsiasi della pagina
+      document.body.addEventListener('click', () => {
+        contextMenu.classList.add('hidden');
+      });
+
+      // Per ogni elemento interattivo...
+      interactiveElements.forEach(element => {
+
+        // ...aggiungi un listener per 'mouseenter' (quando il mouse entra)
+        element.addEventListener('mouseenter', (event) => {
+          // Impedisci al click sull'elemento di chiudere subito il menu
+          event.stopPropagation(); 
+
+          // 1. Pulisci il menu precedente
+          contextMenu.innerHTML = '';
+
+          // 2. Leggi le azioni dall'attributo 'data-actions'
+          const actions = element.dataset.actions.split(',').map(action => action.trim());
+
+          // 3. Crea e aggiungi i link delle azioni al menu
+          actions.forEach(action => {
+            const actionLink = document.createElement('a');
+            actionLink.href = '#'; // Impedisce il refresh della pagina
+            actionLink.textContent = action;
+            // Usa le classi Tailwind per lo stile dei link nel menu
+            actionLink.className = 'block w-full text-left px-3 py-1.5 rounded hover:bg-gray-700 whitespace-nowrap';
+
+            // Aggiungi la logica di gioco qui!
+            actionLink.addEventListener('click', (e) => {
+              e.preventDefault(); // Impedisce al link '#' di funzionare
+              e.stopPropagation(); // Ferma la propagazione del click
+              
+              const objectId = element.dataset.objectId;
+              handleGameAction(objectId, action); // Chiama la funzione di logica
+              contextMenu.classList.add('hidden'); // Nascondi il menu dopo il click
+            });
+
+            contextMenu.appendChild(actionLink);
+          });
+
+          // 4. Posiziona il menu vicino al cursore
+          // Usiamo pageX/pageY per la posizione assoluta nella pagina
+          positionMenu(event.pageX, event.pageY);
+
+          // 5. Mostra il menu
+          contextMenu.classList.remove('hidden');
+        });
+
+        // Aggiungi un listener per 'mouseleave' (quando il mouse esce)
+        element.addEventListener('mouseleave', () => {
+          // Non nascondere subito, potresti voler entrare nel menu.
+          // Il menu si nasconderà se il mouse esce anche da LUI.
+        });
+      });
+
+      // Nascondi il menu se il mouse esce dalla sua area
+      contextMenu.addEventListener('mouseleave', () => {
+        contextMenu.classList.add('hidden');
+      });
+      
+      // Funzione per posizionare il menu, con controllo dei bordi
+      function positionMenu(mouseX, mouseY) {
+          const menuWidth = contextMenu.offsetWidth;
+          const menuHeight = contextMenu.offsetHeight;
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+
+          let x = mouseX + 10; // Posizione X (10px a destra del cursore)
+          let y = mouseY + 10; // Posizione Y (10px sotto il cursore)
+
+          // Controllo per non uscire dal bordo destro
+          if (x + menuWidth > viewportWidth) {
+              x = mouseX - menuWidth - 10; // Sposta a sinistra
+          }
+          // Controllo per non uscire dal bordo inferiore
+          if (y + menuHeight > viewportHeight) {
+              y = mouseY - menuHeight - 10; // Sposta sopra
+          }
+
+          contextMenu.style.left = `${x}px`;
+          contextMenu.style.top = `${y}px`;
+      }
+
+      /**
+       * Questa è la funzione PRINCIPALE della tua logica di gioco.
+       * Ogni volta che un utente clicca un'azione, questa funzione viene chiamata.
+       * @param {string} objectId - L'ID dell'oggetto (es. "polaroid_tavolo")
+       * @param {string} action - L'azione scelta (es. "osserva")
+       */
+      function handleGameAction(objectId, action) {
+        console.log(`Azione: ${action}, Oggetto: ${objectId}`);
+
+        // --- QUI VA LA TUA LOGICA DI GIOCO ---
+        // Esempio:
+        // if (objectId === 'polaroid_tavolo' && action === 'osserva') {
+        //   document.getElementById('text').innerHTML += '<p>È una foto sfocata. Vedi tre persone che non riconosci e un gatto.</p>';
+        // }
+        // if (objectId === 'polaroid_tavolo' && action === 'prendi') {
+        //   // Qui dovresti rimuovere l'oggetto dalla scena e aggiungerlo all'inventario
+        //   // (richiede una gestione dello "stato" del gioco più complessa)
+        //   console.log('Hai preso la polaroid');
+        // }
+      }
+
+    });
+  </script>
+
+</body>
+</html>
